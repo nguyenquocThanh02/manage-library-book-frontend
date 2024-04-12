@@ -1,4 +1,5 @@
 <template>
+    <h4 class="text-center">Sách đã mượn</h4>
     <BorrowList :orders="orders"/>
 </template>
 

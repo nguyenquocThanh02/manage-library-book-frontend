@@ -1,12 +1,15 @@
 <template>
+    <div v-if="message" class="alert alert-success" role="alert">
+        <i class="fa-regular fa-circle-check"></i>
+        {{ message }}
+    </div>
     <div v-if="book" class="page">
-        <h4>Hiệu chỉnh sách</h4>
+        <h4 class="text-center">Hiệu chỉnh sách</h4>
         <BookForm 
             :book="book"
             @submit:book="updateBook"
             @delete:book="deleteBook"
         />
-        <p>{{ message }}</p>
     </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-    <Form @submit="submitBook" :validation-schema="bookFormSchema"> 
+    <Form @submit="submitBook" :validation-schema="bookFormSchema" class="shadow p-4"> 
         <div class="form-group">
             <label for="name">Tên sách: </label>
             <Field name="name" type="text" class="form-control" v-model="bookLocal.name"/>
@@ -37,8 +37,9 @@
         </div>
         
         <div class="form-group">
-            <button class="btn btn-primary">Lưu</button>
-            <button v-if="bookLocal._id" class="ml-2 btn btn-danger" type="button" @click="deleteBook">Xoá</button>
+            <button class="btn btn-outline-primary">Lưu</button>
+            <button v-if="bookLocal._id" class="ml-2 me-2 btn btn-outline-danger" type="button" @click="deleteBook">Xoá</button>
+            <button class="btn btn-outline-secondary ml-2" @click="handleReturn">Trở lại</button>
         </div>
         
     </Form>
@@ -99,6 +100,9 @@ export default {
             reader.onload = e =>{
                 this.bookLocal.image = e.target.result;
             };
+        },
+        handleReturn() {
+            this.$router.push({"name": "adminbook"})
         }
     },
 };

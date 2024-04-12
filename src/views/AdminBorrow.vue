@@ -1,4 +1,5 @@
 <template>
+    <h3 class="text-center">Tất cả các đơn mượn</h3>
     <BorrowList :orders="orders"/>
 </template>
 

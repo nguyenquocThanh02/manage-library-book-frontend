@@ -1,5 +1,5 @@
 <template>
-    <footer class="bg-dark text-white py-4 ">
+    <footer class="bg-dark text-white py-4 mt-4">
         <div class="d-flex justify-content-between flex-column">
             <div class="text-center">
                 <p>&copy; 2024 Bản quyền thuộc về nguyenquocthanh.</p>

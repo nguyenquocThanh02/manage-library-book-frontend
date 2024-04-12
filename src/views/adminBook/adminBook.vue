@@ -5,7 +5,11 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12 mt-2"><router-link :to="{name: 'adminborrow'}">Quản lý mượn sách</router-link></div>
+        <div class="col-12 mt-2"><router-link :to="{name: 'adminborrow'}">
+            <span class="mt-2 badge badge-primary">
+                <i class="fa-solid fa-book"></i> Quản lý mượn sách
+            </span>
+        </router-link></div>
     </div>
     <div class="row">
         <div class="mt-3 col-8">
@@ -14,17 +18,17 @@
             </h4>
             <BookList v-if="filteredBooksCount > 0" :books="filteredBooks" v-model:activeIndex="activeIndex" />
             <p v-else>Chưa có quyển sách nào!</p>
-            <div class="mt-3 row justify-content-around align-items-center">
-                <button class="btn btn-primary" @click="refreshList()">
+            <div class="mt-3 row justify-content-end align-items-center">
+                <button class="btn btn-outline-primary mr-4" @click="refreshList()">
                     <i class="fas fa-redo"></i> Làm mới
                 </button>
 
-                <button class="btn btn-success" @click="goToAddBook">
+                <button class="btn btn-outline-success mr-4" @click="goToAddBook">
                     <i class="fas fa-plus"></i> Thêm mới
                 </button>
 
                 <button
-                    class="btn btn-danger"
+                    class="btn btn-outline-danger mr-3"
                     @click="removeAllBooks"
                 >
                     <i class="fas fa-trash"></i> Xóa tất cả
@@ -33,20 +37,22 @@
         </div>
         <div class="mt-3 col-4">
             <div v-if="activeBook">
-                <h4>
-                    Chi tiết 
-                </h4>
+                <div class="d-flex justify-content-between">
+                    <h4>
+                        Chi tiết 
+                    </h4>
+                    <router-link 
+                        :to="{
+                            name: 'book.edit',
+                            params: {id: activeBook._id},
+                        }"
+                    >
+                        <span class="mt-2 badge badge-warning">
+                            <i class="fas fa-edit"></i> Hiệu chỉnh
+                        </span>
+                    </router-link>
+                </div>
                 <BookCard :book="activeBook" />
-                <router-link 
-                    :to="{
-                        name: 'book.edit',
-                        params: {id: activeBook._id},
-                    }"
-                >
-                    <span class="mt-2 badge badge-warning">
-                        <i class="fas fa-edit"></i> Hiệu chỉnh
-                    </span>
-                </router-link>
             </div>
         </div>
     </div>

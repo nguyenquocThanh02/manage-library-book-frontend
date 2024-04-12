@@ -1,11 +1,14 @@
 <template>
+    <div v-if="message" class="alert alert-success" role="alert">
+        <i class="fa-regular fa-circle-check"></i>
+        {{ message }}
+    </div>
     <div class="page">
-        <h4>Thêm sách mới</h4>
+        <h4 class="text-center">Thêm sách mới</h4>
         <BookForm 
             :book="{}"
             @submit:book="createBook"
         />
-        <p>{{ message }}</p>
     </div>
 </template>
 <script>

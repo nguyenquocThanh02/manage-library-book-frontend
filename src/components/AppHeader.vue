@@ -11,7 +11,7 @@
                     <i class="fa-solid fa-book-open"></i>
                 </router-link>
             </li>
-            <li class="nav-item">
+            <li v-if="isAdmin" class="nav-item" >
                 <router-link :to="{name: 'adminbook'}" class="nav-link">
                     Quản lý
                 </router-link>
@@ -26,13 +26,13 @@
         <div v-else>
             <div class="d-flex">
                 <div>
-                    <router-link :to="{name: 'ordersofuser', params: { email: userEmail}}" class="nav-link">
+                    <router-link :to="{name: 'ordersofuser', params: { email: userEmail}}" class="nav-link" :style="{ color: 'rgba(255,255,255,.5)' }">
                         Đã mượn
                         <i class="fa-solid fa-book"></i>
                     </router-link>
                 </div>
-                <div class="mr-2 ml-2">{{ userName }}</div>
-                <div @click="logout">Đăng xuất</div>
+                <div class="mr-2 ml-2 nav-link" :style="{ color: '#007bff' }">{{ userName }}</div>
+                <div @click="logout" class="nav-link" :style="{ color: 'rgba(255,255,255,.5)' }">Đăng xuất</div>
             </div>
         </div>
     </nav>
@@ -42,7 +42,8 @@ export  default{
     data() {
         return {
             userName: null,
-            userEmail: null
+            userEmail: null,
+            isAdmin: false,
         };
     }, 
     computed: {
@@ -51,13 +52,20 @@ export  default{
             this.userEmail = localStorage.getItem('useremail');
             return this.userName;
         },
+        getIsAdmin(){
+            this.isAdmin = localStorage.getItem('isAdmin');
+            return this.isAdmin;
+        },
         logout(){
             localStorage.removeItem('username');
             localStorage.removeItem('useremail');
+            if(this.isAdmin) localStorage.removeItem('isAdmin');
+            this.$router.push({"name": "homepage"})
         }
     },
     mounted() {
         this.getUserName;
+        this.getIsAdmin;
     },
 }
 </script>

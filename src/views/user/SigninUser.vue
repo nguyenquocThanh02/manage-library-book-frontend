@@ -1,6 +1,10 @@
 <template>
-    <div>{{ message }}</div>
-    <Form :validation-schema="UserFormSchema"> 
+    <div v-if="message" class="alert alert-success" role="alert">
+        <i class="fa-regular fa-circle-check"></i>
+        {{ message }}
+    </div>
+    <Form :validation-schema="UserFormSchema" class="w-50 m-auto shadow p-4"> 
+        <h4 class="text-center">Đăng ký</h4>
         <div class="form-group">
             <label for="name">Họ và tên: </label>
             <Field name="name" type="text" class="form-control" v-model="UserLocal.name"/>

@@ -1,6 +1,10 @@
 <template>
-    <div>{{ message }}</div>
-    <Form @submit="submitUser" :validation-schema="UserFormSchema"> 
+    <div v-if="message" class="alert alert-success" role="alert">
+        <i class="fa-regular fa-circle-check"></i>
+        {{ message }}
+    </div>
+    <Form @submit="submitUser" :validation-schema="UserFormSchema" class="w-50 m-auto shadow p-4"> 
+        <h4 class="text-center">Đăng nhập</h4>
         <div class="form-group">
             <label for="email">Email: </label>
             <Field name="email" type="email" class="form-control" v-model="UserLocal.email"/>
@@ -18,6 +22,14 @@
     </Form>
 </template>
 
+<style scoped>
+.el-alert {
+  margin: 20px 0 0;
+}
+.el-alert:first-child {
+  margin: 0;
+}
+</style>
 <script>
 import * as yup from "yup";
 import { Form, Field, ErrorMessage } from "vee-validate";
@@ -53,8 +65,6 @@ export default {
                 }else{
                     localStorage.setItem('username', result.name);
                     localStorage.setItem('useremail', result.email);
-                    console.log('nhap')
-                    console.log(result.isAdmin)
                     if(result.idAdmin){
                         localStorage.setItem('isAdmin', result.idAdmin);
                     }

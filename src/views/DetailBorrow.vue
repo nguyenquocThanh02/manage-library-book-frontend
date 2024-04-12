@@ -1,12 +1,10 @@
 <template>
+    <h4 class="text-center p-4">Chi tiết đơn mượn</h4>
     <table class="table table-bordered shadow">
         <tbody>
             <tr>
-                <td class="text-center">
-                    <img :src="borrow?.orderBook?.image" class="card-img-top" alt="anh sach" style="height: 400px; width: 300px;">
-                </td>
                 <td class="">
-                    <h4 class="text-center">Thông tin sách</h4>
+                    <h5 class="text-center">Thông tin sách</h5>
                     <ul class="">
                         <li>Tên sách: {{ borrow?.orderBook.name }}</li>
                         <li>Tác giả: {{ borrow?.orderBook.author }}</li>
@@ -14,7 +12,7 @@
                     </ul>
                 </td>
                 <td>
-                    <h4 class="text-center">Thông tin người mượn</h4>
+                    <h5 class="text-center">Thông tin người mượn</h5>
                     <ul>
                         <li>Tên: {{ borrow?.orderUser.name }}</li>
                         <li>Số điện thoại: {{ borrow?.orderUser.phone }}</li>
@@ -23,7 +21,7 @@
                     </ul>
                 </td>
                 <td>
-                    <h4 class="text-center">Thông tin mượn sách</h4>
+                    <h5 class="text-center">Thông tin mượn sách</h5>
                     <ul>
                         <li>Mã đơn: {{ borrow?._id }}</li>
                         <li>Ngày đã mượn: {{ borrow?.dateOrdered }}</li>
@@ -34,7 +32,8 @@
             </tr>
             <tr v-if="isAdmin">
                 <td colspan="4" class="text-right">
-                    <div class="btn btn-warning">Đã trả ?</div>
+                    <div class="btn btn-outline-secondary" @click="handleReturn" >Trở về</div>
+                    <div class="btn btn-outline-warning ml-2">Cập nhật trạng thái</div>
                 </td>
             </tr>
         </tbody>
@@ -59,7 +58,9 @@ export default{
         },
         getIsAdmin(){
             this.isAdmin = localStorage.getItem('isAdmin') ? true : false;
-            console.log(this.isAdmin)
+        },
+        handleReturn() {
+            this.$router.push({"name": "adminborrow"})
         }
     },
     created(){

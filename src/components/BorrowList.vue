@@ -33,7 +33,7 @@ export default {
                 <td>{{ order.dateOrdered }}</td>
                 <td>{{ order.dateReturned }}</td>
                 <td>{{ order.isReceived }}</td>
-                <td><button @click="goToDetailBorrow(order._id)" class="btn btn-primary">Xem</button></td>
+                <td><button @click="goToDetailBorrow(order._id)" class="btn btn-outline-primary">Xem</button></td>
             </tr>
         </tbody>
     </table>

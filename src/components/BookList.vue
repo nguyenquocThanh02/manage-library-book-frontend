@@ -19,6 +19,7 @@ export default {
             <tr>
                 <th scope="col">Tên sách</th>
                 <th scope="col">Tác giả</th>
+                <th scope="col">Giá</th>
                 <th scope="col">Có sẵn</th>
             </tr>
         </thead>
@@ -31,6 +32,7 @@ export default {
             >
                 <td>{{ book.name }}</td>
                 <td>{{ book.author }}</td>
+                <td>{{ book.price }}</td>
                 <td>{{ book.countInStock }}</td>
             </tr>
         </tbody>
