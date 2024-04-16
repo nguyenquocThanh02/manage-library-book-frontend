@@ -15,6 +15,10 @@ class OrderService {
     }
 
 
+    async cancelOrderById(id){
+        (await this.api.delete(`/cancel/${id}`));
+    }
+
     async getOrderOfUser(email){
         return (await this.api.get(`/${email}`)).data;
     }
@@ -36,6 +40,8 @@ class OrderService {
     async delete(id){
         return (await this.api.delete(`/${id}`)).data;
     }
+
+    
 
 }
 

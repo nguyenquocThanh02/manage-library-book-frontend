@@ -30,10 +30,11 @@
                     </ul>
                 </td>
             </tr>
-            <tr v-if="isAdmin">
+            <tr>
                 <td colspan="4" class="text-right">
                     <div class="btn btn-outline-secondary" @click="handleReturn" >Trở về</div>
-                    <div class="btn btn-outline-warning ml-2">Cập nhật trạng thái</div>
+                    <div v-if="isAdmin" class="btn btn-outline-warning ml-2" @click="handleCancelByAdmin">Đã trả</div>
+                    <div v-else class="btn btn-outline-warning ml-2" @click="handleCancelByUser">Huỷ mượn sách</div>
                 </td>
             </tr>
         </tbody>
@@ -60,6 +61,15 @@ export default{
             this.isAdmin = localStorage.getItem('isAdmin') ? true : false;
         },
         handleReturn() {
+            this.$router.push({"name": "adminborrow"})
+        },
+        async handleCancelByUser(){
+            const userEmail = localStorage.getItem('useremail');
+            await orderService.cancelOrderById(this.id)
+            this.$router.push({"name": "ordersofuser",  params: { email: userEmail}})
+        },
+        async handleCancelByAdmin(){
+            await orderService.cancelOrderById(this.id)
             this.$router.push({"name": "adminborrow"})
         }
     },
